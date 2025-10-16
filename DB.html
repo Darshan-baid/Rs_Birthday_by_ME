@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Rajoshree! 🎉</title>
+
+    <!-- Google Fonts for a dreamy, elegant look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Great+Vibes&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Canvas-Confetti library for the celebration effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --pastel-pink: #FADADD;
+            --pastel-lavender: #E0BBE4;
+            --pastel-blue: #BDE0FE;
+            --pastel-mint: #A2E4B8;
+            --dark-text: #4A4A4A;
+            --brandy-rose: #bb8a89;
+            --bg-white-transparent: rgba(255, 255, 255, 0.88);
+        }
+
+        /* Basic Setup */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 2rem 1rem;
+            font-family: 'Lato', sans-serif;
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, var(--pastel-pink), var(--pastel-lavender), var(--pastel-blue), var(--pastel-mint));
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+            /* Prevents scrollbar from animation */
+        }
+
+        /* Keyframes for the background animation */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Main content container with the semi-transparent effect */
+        .content-box {
+            background: var(--bg-white-transparent);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            /* For Safari */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            /* Responsive font size */
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 .nickname {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 10vw, 4.5rem);
+            color: var(--brandy-rose);
+            display: block;
+            margin-top: -10px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            color: var(--dark-text);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation Bar Styling */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--pastel-pink);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: transparent;
+            border: 2px solid var(--pastel-lavender);
+            color: var(--dark-text);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover,
+        .nav-button.active {
+            background: var(--pastel-lavender);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Page container and animation */
+        .page {
+            display: none;
+            /* Hide pages by default */
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-load {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* --- Home Page Specifics --- */
+        .special-memory {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2.5rem;
+            border-left: 5px solid var(--pastel-pink);
+            text-align: left;
+        }
+
+        .special-memory h3 {
+            margin-top: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Photo Gallery & Lightbox --- */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .photo-gallery .photo-item {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-gallery .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 4px solid transparent;
+        }
+
+        .photo-gallery .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            position: relative;
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: white;
+            color: var(--dark-text);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 2rem;
+            line-height: 35px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* --- Wishes Page --- */
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-top: 5px solid var(--pastel-blue);
+        }
+
+        .wish-card p {
+            margin: 0;
+            font-style: italic;
+        }
+
+        .wish-card .author {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: right;
+            color: var(--brandy-rose);
+        }
+
+        /* --- Poem Page --- */
+        .gemini-button {
+            background: linear-gradient(45deg, var(--pastel-pink), var(--pastel-lavender));
+            color: var(--dark-text);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gemini-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gemini-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .poem-container {
+            margin-top: 2rem;
+            padding: 3.5rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 2.2;
+            color: #000000;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--pastel-pink);
+            transition: all 0.3s ease;
+        }
+
+        .poem-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-left-color: var(--pastel-lavender);
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--pastel-lavender);
+            animation: spin 1s ease infinite;
+            margin: 1rem auto 0;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- Global Elements --- */
+        audio {
+            width: 80%;
+            max-width: 400px;
+            margin-top: 2.5rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .content-box {
+                padding: 1.5rem;
+            }
+
+            .main-nav {
+                gap: 0.5rem;
+            }
+
+            .nav-button {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Content Box -->
+    <main class="content-box">
+
+        <nav class="main-nav">
+            <button class="nav-button active" data-target="home">Home</button>
+            <button class="nav-button" data-target="gallery">Gallery</button>
+            <button class="nav-button" data-target="wishes">Wishes</button>
+            <button class="nav-button" data-target="poem">Poem</button>
+        </nav>
+
+        <!-- Page: Home -->
+        <section id="page-home" class="page active">
+            <h1 class="animate-on-load">HAPPY BIRTHDAY<span class="nickname">Rajoshree!</span>💖✨</h1>
+            <p class="animate-on-load delay-1">My Dearest Rajoshree,<br><br>Happy Birthday to the one who makes my life
+                feel as soft and beautiful as a spring morning. You are my greatest joy, my best friend, and my love. I
+                hope this day is as perfect and wonderful as you are.</p>
+
+            <div class="special-memory animate-on-load delay-2">
+                <h3>A Favorite Memory...</h3>
+                <p>I still remember our first trip to Purulia… climbing those mountains together, me helping you at
+                    every step. Everyone
+                    was teasing us, but we didn’t care — somehow, it felt like a special connection just between us.</p>
+            </div>
+        </section>
+
+        <!-- Page: Gallery -->
+        <section id="page-gallery" class="page">
+            <h2>Our Cherished Moments</h2>
+            <div class="photo-gallery">
+                <div class="photo-item"><img src="photo/pic1.jpg" alt="First trip together"></div>
+                <div class="photo-item"><img src="photo/pic2.jpg" alt="First photo clicked by me"></div>
+                <div class="photo-item"><img src="photo/pic3.jpg" alt="First dance"></div>
+                <div class="photo-item"><img src="photo/pic4.jpg" alt="First Holi party"></div>
+                <div class="photo-item"><img src="photo/pic5.jpg" alt="First time at her house"></div>
+                <div class="photo-item"><img src="photo/pic6.jpg" alt="First photo together"></div>
+            </div>
+        </section>
+
+        <!-- Page: Wishes -->
+        <section id="page-wishes" class="page">
+            <h2>Wishes from the Heart</h2>
+            <p>You are so loved by so many! Here are just a few messages for you on your special day.</p>
+            <div class="wishes-grid">
+                <div class="wish-card animate-on-load">
+                    <p>"Happy Birthday, Sunshine
+
+                        You’ve been my most beautiful part of every day
+                        from the first time we met to every random moment since then.
+                        You make even the simplest moments feel special.
+                        Thank you for always standing with me and always supporting me
+
+                        Here’s to more smiles, more adventures, and endless sunshine ahead."</p>
+                    <div class="author">- special person</div>
+                </div>
+                <div class="wish-card animate-on-load">
+                    <p>"Happy Birthday to the first friend I made in college. Thank you so much for existing and making
+                        my gloomy mood better
+                        with your sunshine 🖤❤
+                        Keep growing and glowing as you do. Party hard; you deserve it 🎀🎉🥳
+                        Right by your side to support you, always "</p>
+                    <div class="author">- Aritri</div>
+                </div>
+                <div class="wish-card animate-on-load delay-2">
+                    <p>"Happy birthday to my Sister , my gossip Partner and the best pair of ears .. wishing u a
+                        wonderful year ahead.. wish u
+                        get all the happiness in the world.. (btw u still owe me a rakhi)"</p>
+                    <div class="author">- Misba</div>
+                </div>
+                <div class="wish-card animate-on-load delay-1">
+                    <p>"Happy birthday Sutki ! 🥰
+                        I knows over here whatever i have said it will be less to say about you..... its just a
+                        formalities.... rest whatever we
+                        have shared & continuing will be cherished forever......
+
+                        Wishing you the happiest birthday! You have been always special to me. You were my very first
+                        female batchmate in
+                        college, and without even realizing it, you became such a close and a very good friend of mine.
+                        Uk how much i mean to
+                        you... Thank you for being someone with whom i can always share laughter and all the silly
+                        chitchats. I'm really glad we
+                        met, and I hope your day is filled with love & laughter once again happy birthday sutki stay
+                        blessed enjoy ur day
+                        🫂💫❣🤍 Lot of love ... Sutki 🎂🥺🪬✨"</p>
+                    <div class="author">- Jyoti</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Poem Generator -->
+        <section id="page-poem" class="page">
+            <h2>Shayari for you</h2>
+            <div class="poem-container">
+                Tu ho toh sab kuch sweet lagta hai,<br>
+                Har pal ek treat lagta hai,<br>
+                Bas tu yun hi paas rahe sada,<br>
+                Tere bina dil incomplete lagta hai
+        </section>
+
+        <audio controls loop>
+            <source src="song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+    </main>
+
+    <!-- Lightbox Structure (hidden by default) -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button id="lightboxClose" class="lightbox-close">&times;</button>
+            <img id="lightboxImg" src="" alt="Enlarged view">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pastelColors = ['#FADADD', '#E0BBE4', '#BDE0FE', '#A2E4B8'];
+
+            // --- Confetti ---
+            function launchConfetti() {
+                const duration = 5 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+                function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+                const interval = setInterval(() => {
+                    const timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) return clearInterval(interval);
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: pastelColors });
+                    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: pastelColors });
+                }, 250);
+            }
+            if (window.location.hash !== "#reloaded") {
+                launchConfetti();
+                window.location.hash = "#reloaded";
+            }
+
+            // --- Page Navigation ---
+            const navButtons = document.querySelectorAll('.nav-button');
+            const pages = document.querySelectorAll('.page');
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetPageId = button.dataset.target;
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    pages.forEach(page => {
+                        page.classList.toggle('active', page.id === `page-${targetPageId}`);
+                    });
+                });
+            });
+
+            // --- Lightbox Gallery ---
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const photoItems = document.querySelectorAll('.photo-item');
+
+            photoItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    lightboxImg.src = img.src;
+                    lightboxCaption.textContent = img.alt;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            const closeLightbox = () => lightbox.classList.remove('active');
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        });
+
+        // No JavaScript needed for static poem
+    </script>
+
+</body>
+
+</html>
